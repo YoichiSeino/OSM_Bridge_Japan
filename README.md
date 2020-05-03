@@ -41,7 +41,7 @@ osmconvert japan-latest.osm.pbf -o=japan-latest.o5m
 
 2. 1.で出来た.o5mファイルの中身から"bridge"というタグあるいは値の入ったPOIを抽出する。
 ```
-osmfilter japan-latest.o5m --keep="bridge" > bridge_japan20200501.osm
+osmfilter japan-latest.o5m --keep="*bridge*" > bridge_japan20200501.osm
 ```
 
-3. 2.で出来た.osmファイルをQGISで開いて、それぞれの要素（multilines, multiporygons, other_relations, points）ごとに個別のファイルとしてGeoJSON形式で保存する。linesデータはファイルサイズが大きくなるので、各地域単位で切り出す。この際、CRSはWGS84（EPSG:4326）で保存しておく。
+3. 2.で出来た.osmファイルをQGISで開いて、それぞれの要素（multilinestrings, multipolygons, other_relations, points）ごとに個別のファイルとしてGeoJSON形式で保存する。linesデータはファイルサイズが大きくなるので、各地域単位で切り出す。この際、CRSはWGS84（EPSG:4326）で保存しておく。
