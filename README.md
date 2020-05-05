@@ -45,8 +45,7 @@ osmconvert japan-latest.osm.pbf -o=japan-latest.o5m
 osmfilter japan-latest.o5m --keep="*bridge*" > bridge_japan-latest.osm
 ```
 
-3. QGISを挟むとレイヤーごとにファイルが別れてしまう（.osmも.geojsonも複数の地物タイプ（point, line etc...）を1つのファイル内に持たせられるのが特徴）のがスマートではないので、.osmファイルの構造を崩さずに直接.geojsonファイルに変換する。
-    3.1 メモリの割り当てを16GBにしている。
+3. osmtogeojsonを使って.osmファイルの構造を崩さずに直接.geojsonファイルに変換する。その際、デフォルトではメモリの割り当てが少ないため、ここでは16GBにしている（メモリの割り当てを気にしなくて良い場合は、素直にosmtogeojson in.osm > out.geojsonで良い）。
 ```
 node --max_old_space_size=16384 '/usr/local/bin/osmtogeojson' bridge_japan-latest.osm > bridge_japan-latest.geojson
 ```
