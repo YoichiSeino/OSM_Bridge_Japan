@@ -6,7 +6,7 @@ OpenStreetMapにある、日本国内の橋梁の情報を抜き出したデー�
 
 Download source : https://download.geofabrik.de/asia/japan.html
 
-Date of Data : 2020-05-02T20:59:02Z
+Date of Data : 2020-05-03T20:59:02Z
 
 Copyright : © OpenStreetMap contributors
 
