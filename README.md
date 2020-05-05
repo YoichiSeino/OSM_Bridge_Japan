@@ -26,10 +26,11 @@ License : ODbL https://opendatacommons.org/licenses/odbl/
     * https://wiki.openstreetmap.org/wiki/Osmfilter
         * OSMのデータから欲しいデータだけを抽出するためのツール。特定のタグや値のみを検索して抽出／逆抽出したりできる。
 
-* QGIS
-    * https://qgis.org/
-        * 本来であれば、直接OGRのogr2ogrを使って変換するのがスマート。
-            * うまくコードが書けなかった（笑）ので、QGISを使った。
+* osmtogeojson
+    * https://github.com/tyrasd/osmtogeojson
+        * .osmファイルを構造を保ったまま.geojsonに変換できるツール。JavaScript（node.js）。
+        * npm経由でインストール。
+        * メモリの割り当てがデフォルトだと少ないので、マニュアルに従って、増やしてあげる必要がある。
 
 
 ## データ加工の手順
@@ -41,7 +42,11 @@ osmconvert japan-latest.osm.pbf -o=japan-latest.o5m
 
 2. 1.で出来た.o5mファイルの中身から"bridge"というタグあるいは値の入ったPOIを抽出する。
 ```
-osmfilter japan-latest.o5m --keep="*bridge*" > bridge_japan20200501.osm
+osmfilter japan-latest.o5m --keep="*bridge*" > bridge_japan-latest.osm
 ```
 
-3. 2.で出来た.osmファイルをQGISで開いて、それぞれの要素（multilinestrings, multipolygons, other_relations, points）ごとに個別のファイルとしてGeoJSON形式で保存する。linesデータはファイルサイズが大きくなるので、各地域単位で切り出す。この際、CRSはWGS84（EPSG:4326）で保存しておく。
+3. QGISを挟むとレイヤーごとにファイルが別れてしまう（.osmも.geojsonも複数の地物タイプ（point, line etc...）を1つのファイル内に持たせられるのが特徴）のがスマートではないので、.osmファイルの構造を崩さずに直接.geojsonファイルに変換する。
+    3.1 メモリの割り当てを16GBにしている。
+```
+node --max_old_space_size=16384 '/usr/local/bin/osmtogeojson' bridge_japan-latest.osm > bridge_japan-latest.geojson
+```
