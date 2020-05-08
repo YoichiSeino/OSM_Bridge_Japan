@@ -8,7 +8,7 @@ Download source : https://download.geofabrik.de/asia/japan.html
 
 Date of Data : 2020-05-02T20:59:02Z
 
-Copyright : © OpenStreetMap contributors
+Copyright : © OpenStreetMap contributors ( https://www.openstreetmap.org/copyright )
 
 License : ODbL https://opendatacommons.org/licenses/odbl/
 
